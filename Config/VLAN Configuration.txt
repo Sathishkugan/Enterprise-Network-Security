@@ -1,0 +1,27 @@
+! Create VLANs for HR, Finance, Sales, and IT
+
+VLAN 40
+name IT-VLAN
+exit
+
+int range f0/1 - 2
+switchport mode trunk
+exit
+
+int range f0/3 - 24
+switchport mode access
+switchport access vlan 40
+exit
+
+do wr
+
+conf t
+VLAN 10
+name HR-VLAN
+VLAN 20
+name FINANCE-VLAN
+VLAN 30
+name SALES-VLAN
+VLAN 40
+name IT-VLAN
+exit

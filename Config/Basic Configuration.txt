@@ -1,0 +1,37 @@
+! Basic Configuration
+
+enable secret hawkeye
+
+line con 0
+password hawkeye
+login
+exit
+
+line vty 0 4
+password hawkeye
+login
+exit
+
+banner motd $-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+UNAUTHORIZED ACCESS IS PROHIBITED
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+$
+
+no ip domain lookup
+
+service password-encryption
+
+username avenger secret hawkeye
+ip domain-name hawkeye.com
+
+crypto key generate rsa
+1024
+
+ip ssh version 2
+
+line vty 0 4
+login local
+transport input ssh
+exit
+
+do wr

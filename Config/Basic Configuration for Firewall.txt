@@ -1,0 +1,7 @@
+! Basic Configuration for Firewall 
+
+configure mode commands/options:
+  ISP1       Name of interface GigabitEthernet1/1
+  ISP2       Name of interface GigabitEthernet1/2
+  HQ         Name of interface GigabitEthernet1/3
+  SERVER     Name of interface GigabitEthernet1/4

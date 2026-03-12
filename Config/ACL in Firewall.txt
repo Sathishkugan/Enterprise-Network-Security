@@ -1,0 +1,91 @@
+! ACL for Firewall 
+hostname FW1 
+
+object network HR-ISP1 
+subnet 192.168.20.0 255.255.255.192 
+nat (HQ,ISP1) dynamic interface 
+exit 
+  
+object network HR-ISP1 
+subnet 192.168.20.0 255.255.255.192 
+nat (HQ,ISP1) dynamic interface 
+exit 
+   
+
+object network FINANCE-ISP1 
+subnet 192.168.20.64 255.255.255.192 
+nat (HQ,ISP1) dynamic interface 
+exit 
+   
+
+object network SALES-ISP1 
+subnet 192.168.20.128 255.255.255.192 
+nat (HQ,ISP1) dynamic interface 
+exit 
+
+   
+object network IT-ISP1 
+subnet 192.168.20.192 255.255.255.192 
+nat (HQ,ISP1) dynamic interface 
+exit 
+
+   
+
+object network SERVER-ISP1 
+subnet 192.168.21.0 255.255.255.240 
+nat (SERVER,ISP1) dynamic interface 
+exit    
+
+object network HR-ISP2 
+subnet 192.168.20.0 255.255.255.192 
+nat (HQ,ISP2) dynamic interface 
+exit 
+
+   
+object network FINANCE-ISP2 
+subnet 192.168.20.64 255.255.255.192 
+nat (HQ,ISP2) dynamic interface 
+exit 
+
+   
+
+object network SALES-ISP2 
+subnet 192.168.20.128 255.255.255.192 
+nat (HQ,ISP2) dynamic interface 
+exit    
+
+object network IT-ISP2 
+subnet 192.168.20.192 255.255.255.192 
+nat (HQ,ISP2) dynamic interface 
+exit 
+
+   
+object network SERVER-ISP2 
+subnet 192.168.21.0 255.255.255.240 
+nat (SERVER,ISP2) dynamic interface 
+exit 
+wr mem 
+
+access-list RES-ACCESS EXTENDED permit icmp any any 
+access-list RES-ACCESS EXTENDED permit udp any any eq 67 
+access-list RES-ACCESS EXTENDED permit udp any any eq 68 
+access-list RES-ACCESS EXTENDED permit udp any any eq 53 
+access-list RES-ACCESS EXTENDED permit tcp any any eq 53 
+access-list RES-ACCESS EXTENDED permit tcp any any eq 80 
+access-list RES-ACCESS EXTENDED permit tcp any any eq 25 
+access-list RES-ACCESS EXTENDED permit tcp any any eq 20 
+access-list RES-ACCESS EXTENDED permit tcp any any eq 21 
+access-list RES-ACCESS EXTENDED permit udp any any eq 50 
+access-list RES-ACCESS EXTENDED permit udp any any eq 450 
+access-list RES-ACCESS EXTENDED permit tcp any any eq 22 
+ 
+
+access-group RES-ACCESS in interface SERVER  
+access-group RES-ACCESS in interface ISP1  
+access-group RES-ACCESS in interface ISP2 
+write memory 
+
+
+ 
+
+ 

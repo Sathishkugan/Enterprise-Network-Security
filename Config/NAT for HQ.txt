@@ -1,0 +1,11 @@
+!NAT for HQ
+
+int range g0/0-1 
+ip nat inside 
+exit 
+int g0/2 
+ip nat inside 
+exit 
+access-list 50 permit 192.168.20.0 0.0.0.255  
+ip nat inside source list 50 interface g0/2 overload 
+
